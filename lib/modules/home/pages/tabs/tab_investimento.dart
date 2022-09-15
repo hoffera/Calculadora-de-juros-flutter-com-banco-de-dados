@@ -65,25 +65,32 @@ class _TabInvestimento extends State<TabInvestimento> {
             fontSize: 20.0);
       } else {
         futureInvestimentos =  _mostrarInvestimentos();
+        setState(() {
+          myData = "a";
 
+        });
       }
     }
   }
 
-  void _adicionarObjetivo(Objetivo objetivo, Investimento investimento) async {
+  void _adicionarObjetivo(Objetivo objetivo) async {
     const url = '$baseURL/objetivos';
     var body = json.encode({
-    'nome': objetivo.nome,
-    'tempoConclusao': objetivo.tempoConclusao,
-    'valorEstimado': investimento.pmt,
-    'valorEntrada': objetivo.valorEntrada,
-    'valorMensal': objetivo.valorMensal,
+      'nome': objetivo.nome,
+      'tempoConclusao': objetivo.tempoConclusao,
+      'valorEstimado': objetivo.valorEstimado,
+      'valorEntrada': objetivo.valorEntrada,
+      'valorMensal': objetivo.valorMensal,
 
 
     });}
 
 
   Future<List<Investimento>> _mostrarInvestimentos() async {
+    print(objetivo.nome);
+
+
+
     var url = '$baseURL/investimentos/getInvestimentosComPmt/${objetivo.tempoConclusao}/${objetivo.valorEntrada}/${objetivo.valorEstimado}';
     final preferences = await SharedPreferences.getInstance();
     final token = preferences.getString('auth_token');
@@ -101,9 +108,12 @@ class _TabInvestimento extends State<TabInvestimento> {
   }
 
   Future<List<Investimento>> _mostrarInvest() async {
+
+
+
+
     var url = '$baseURL/investimentos/getInvestimentosComPmt/1/0/0';
     final preferences = await SharedPreferences.getInstance();
-
     final token = preferences.getString('auth_token');
     Map<String, String> headers = {};
     headers["Authorization"] = 'Bearer $token';
@@ -114,7 +124,7 @@ class _TabInvestimento extends State<TabInvestimento> {
           .map((investmento) => Investimento.fromJson(investmento))
           .toList();
     } else {
-      throw ('Sem investimentoos');
+      throw ('Sem investimentos');
     }
   }
 
@@ -135,7 +145,7 @@ class _TabInvestimento extends State<TabInvestimento> {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            'Investimento: ${_investimento[index].investimento}\nRisco: ${_investimento[index].risco!.nome!}\nTaxa: ${_investimento[index].rentabilidade}\nPmt: ${_investimento[index].pmt}',
+                            'Investimento: ${_investimento[index].investimento}\nRisco: ${_investimento[index].risco!.id!}\nTaxa: ${_investimento[index].rentabilidade}\nPmt: ${_investimento[index].pmt}',
                             textAlign: TextAlign.start,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
@@ -144,9 +154,9 @@ class _TabInvestimento extends State<TabInvestimento> {
                         Align(
                           alignment: Alignment.topRight,
                           child: IconButton(
-                            icon: const Icon(Icons.add, size: 20),
-                            color: const Color.fromRGBO(255, 153, 0, 1.0),
-                            onPressed: (){ }
+                              icon: const Icon(Icons.add, size: 20),
+                              color: const Color.fromRGBO(255, 153, 0, 1.0),
+                              onPressed: (){ _adicionarObjetivo(objetivo);}
                           ),
                         ),
                       ],
@@ -185,8 +195,8 @@ class _TabInvestimento extends State<TabInvestimento> {
                       objetivo.nome = value!;
                     }),
 
-                   TextFormField(
-                  keyboardType: TextInputType.number,
+                TextFormField(
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: '',
                       labelText: 'Tempo conclusao',
@@ -199,7 +209,7 @@ class _TabInvestimento extends State<TabInvestimento> {
                     }),
 
                 TextFormField(
-                  keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: '',
                       labelText: 'Valor entrada',
@@ -211,7 +221,7 @@ class _TabInvestimento extends State<TabInvestimento> {
                       objetivo.valorEntrada = value!;
                     }),
                 TextFormField(
-                  keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: '',
                       labelText: 'Valor estimado',
@@ -225,21 +235,21 @@ class _TabInvestimento extends State<TabInvestimento> {
 
                 Container(
                   child: IconButton(
-                    icon: const Icon(Icons.east_rounded, size: 50),
-                    color: const Color.fromRGBO(255, 153, 0, 1.0),
-                    onPressed:(){
-                      isVisible2 = true;
-                      submit();
-                    }
+                      icon: const Icon(Icons.east_rounded, size: 50),
+                      color: const Color.fromRGBO(255, 153, 0, 1.0),
+                      onPressed:(){
+
+                        isVisible2 = true;
+                        submit();
+
+                      }
                   ),
                   alignment: Alignment.topLeft,
                 ),
                 Container(
                   height: 500,
-                  child: Visibility(
-                    visible: isVisible2,
-                    child: buildThis(),
-                  ),
+                  child:  buildThis(),
+
                 ),
               ],
             ),
