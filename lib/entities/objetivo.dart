@@ -6,9 +6,9 @@ import 'investimento.dart';
 class Objetivo {
   int? id;
   String? nome;
-  String? tempoConclusao;
-  String? valorEstimado;
-  String? valorEntrada;
+  int? tempoConclusao;
+  double? valorEstimado;
+  double? valorEntrada;
   String? valorMensal;
   Usuario? usuario;
   Investimento? investimento;

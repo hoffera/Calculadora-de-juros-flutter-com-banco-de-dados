@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextButton.styleFrom(
                       textStyle: Theme.of(context).textTheme.labelLarge,
                       primary: Colors.white,
-                      backgroundColor: const Color.fromRGBO(255, 153, 51, 1.0),
+                      backgroundColor: Colors.blue,
                       shape: const BeveledRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5))),
                     ),
@@ -153,34 +153,26 @@ class _LoginPageState extends State<LoginPage> {
     });
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor:  const Color.fromRGBO(72, 117, 223, 1.0),
         bottomOpacity: 0.0,
         elevation: 0.0,
       ),
-      backgroundColor: const Color.fromRGBO(30, 30, 30, 1.0),
+      backgroundColor: Colors.white,
       body: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [const Color.fromRGBO(72, 117, 223, 1.0), Color(0xffffffff)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )
+
+          ),
           padding: const EdgeInsets.all(20.0),
           child: Form(
             key: _formKey,
             child: ListView(
               children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.only(top: 30.0),
-                  height: 100,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/imagens/apitoBranco.png',
-                        width: 50.0,
-                        height: 50.0,
-                      ),
-                    ],
-                  ),
-                ),
+
                 Container(
                     child: RichText(
                   textAlign: TextAlign.start,
@@ -189,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextSpan(
                           text: 'Olá, tudo bem?',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              fontFamily: 'BebasNeue',
                               color: Colors.white,
                               fontSize: 30))
                     ],
@@ -202,11 +194,11 @@ class _LoginPageState extends State<LoginPage> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Faça o seu login com seu \nCPF e senha.',
+                              text: 'Faça o seu login com seu \nE-Mail e senha.',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'BebasNeue',
                                   color: Colors.white,
-                                  fontSize: 15))
+                                  fontSize: 20))
                         ],
                       ),
                     )),
@@ -218,19 +210,21 @@ class _LoginPageState extends State<LoginPage> {
                       labelStyle: TextStyle(color: Colors.white),
                       hintStyle: TextStyle(color: Colors.white),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,
+                     fontSize: 16),
                     onSaved: (String? value) {
                       usuario.email = value!;
                     }),
                 TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    obscureText: true,
                     decoration: const InputDecoration(
                       hintText: '',
                       labelText: 'Senha',
                       labelStyle: TextStyle(color: Colors.white),
                       hintStyle: TextStyle(color: Colors.white),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,
+                     fontSize: 16),
                     onSaved: (String? value) {
                       usuario.senha = value!;
                     }),
@@ -244,7 +238,8 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: Text(
                       "Esqueci minha senha",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white,
+                        fontFamily: 'BebasNeue',fontSize: 20),
                     ),
                   ),
                   padding: EdgeInsets.zero,
@@ -253,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: screenSize.width,
                   child: IconButton(
                     icon: const Icon(Icons.east_rounded, size: 50),
-                    color: const Color.fromRGBO(255, 153, 0, 1.0),
+                    color: Colors.white,
                     onPressed:
 
                     submit,
@@ -267,13 +262,14 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           WidgetSpan(
                             child: Icon(
-                              Icons.flutter_dash_sharp,
+                              Icons.public,
                               size: 20,
                               color: Colors.white,
                             ),
                           ),
                           TextSpan(
-                            text: "HELLOSAKS.COM",
+                            text: " HELLOSAKS.COM",
+
                           ),
                         ],
                       ),

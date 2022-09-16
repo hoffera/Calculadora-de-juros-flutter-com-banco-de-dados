@@ -4,6 +4,7 @@ import 'package:biblioteca_flutter/config/api.dart';
 import 'package:biblioteca_flutter/entities/usuario.dart';
 import 'package:biblioteca_flutter/modules/home/pages/home_page.dart';
 import 'package:biblioteca_flutter/modules/login/pages/entrarcadastro_page.dart';
+import 'package:biblioteca_flutter/modules/login/pages/login_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -120,40 +121,33 @@ class _SingInPageState extends State<SingInPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const EntrarCadastroPage(),
+            builder: (context) => const LoginPage(),
           ),
         );
       }
     });
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromRGBO(72, 117, 223, 1.0),
         bottomOpacity: 0.0,
         elevation: 0.0,
       ),
       backgroundColor: const Color.fromRGBO(30, 30, 30, 1.0),
       body: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [const Color.fromRGBO(72, 117, 223, 1.0), Color(0xffffffff)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )
+
+          ),
           padding: const EdgeInsets.all(20.0),
           child: Form(
             key: _formKey,
             child: ListView(
               children: <Widget>[
-                Container(
-                  height: 100,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Image.asset(
-                        'assets/imagens/SAKSLOGO.png',
-                        width: 100.0,
-                        height: 100.0,
-                      ),
-                    ],
-                  ),
-                ),
+
                 Container(
                     child: RichText(
                   textAlign: TextAlign.start,
@@ -162,6 +156,7 @@ class _SingInPageState extends State<SingInPage> {
                       TextSpan(
                           text: 'Criar conta',
                           style: TextStyle(
+                              fontFamily: 'BebasNeue',
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontSize: 30))
@@ -178,9 +173,9 @@ class _SingInPageState extends State<SingInPage> {
                               text:
                                   'Informe seus dados abaixo para \ncontinuar.',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'BebasNeue',
                                   color: Colors.white,
-                                  fontSize: 15))
+                                  fontSize: 20))
                         ],
                       ),
                     )),
@@ -192,7 +187,7 @@ class _SingInPageState extends State<SingInPage> {
                       labelStyle: TextStyle(color: Colors.white),
                       hintStyle: TextStyle(color: Colors.white),
                     ),
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white,),
                     onSaved: (String? value) {
                       usuario.nome = value!;
                     }),
@@ -209,9 +204,9 @@ class _SingInPageState extends State<SingInPage> {
                       usuario.email = value!;
                     }),
                 TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: '000.000.000-00',
+                      hintText: '',
                       labelText: 'Senha',
                       labelStyle: TextStyle(color: Colors.white),
                       hintStyle: TextStyle(color: Colors.white),
@@ -221,9 +216,9 @@ class _SingInPageState extends State<SingInPage> {
                       usuario.senha = value!;
                     }),
                 TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: '000.000.000-00',
+                      hintText: '',
                       labelText: 'Confirmar Senha',
                       labelStyle: TextStyle(color: Colors.white),
                       hintStyle: TextStyle(color: Colors.white),
@@ -236,7 +231,7 @@ class _SingInPageState extends State<SingInPage> {
                   width: screenSize.width,
                   child: IconButton(
                     icon: const Icon(Icons.east_rounded, size: 50),
-                    color: const Color.fromRGBO(255, 153, 0, 1.0),
+                    color: Colors.white,
                     onPressed: submit,
                   ),
                   alignment: Alignment.topLeft,
@@ -248,13 +243,13 @@ class _SingInPageState extends State<SingInPage> {
                         children: [
                           WidgetSpan(
                             child: Icon(
-                              Icons.flutter_dash_sharp,
+                              Icons.public,
                               size: 20,
                               color: Colors.white,
                             ),
                           ),
                           TextSpan(
-                            text: "HELLOSAKS.COM",
+                            text: " HELLOSAKS.COM",
                           ),
                         ],
                       ),

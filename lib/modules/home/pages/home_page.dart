@@ -6,18 +6,36 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
-          backgroundColor: const Color.fromRGBO(51, 51, 51, 1.0),
+          backgroundColor: const Color.fromRGBO(72, 117, 223, 1.0),
           appBar: AppBar(
+            toolbarHeight: 30,
             centerTitle: true,
-            title: Text('simulador financeiro',
+            title: Center(
+              child: Wrap(
+                direction: Axis.horizontal  ,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+
+                  Text("S I M U L A D O R   F I N A N C E I R O ",style: const TextStyle(
+                      fontFamily: 'BebasNeue',
+                      fontSize: 20  ,
+
+                      color: Colors.white),),
+
+
+
+                  const Padding(padding: EdgeInsets.only(top: 10)),
+                ],
+              ),
             ),
 
-            backgroundColor: Colors.transparent,
+            backgroundColor: const Color.fromRGBO(72, 117, 223, 1.0),
             bottomOpacity: 0.0,
             elevation: 0.0,
             automaticallyImplyLeading: false,
@@ -25,7 +43,7 @@ class HomePage extends StatelessWidget {
           body: Column(
             children: [
               TabBar(
-                indicatorColor: const Color.fromRGBO(255, 153, 51, 1.0),
+                indicatorColor: Colors.white,
 
                 tabs: [
                   Tab(
@@ -50,10 +68,10 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(child:
               TabBarView(children: [
-
                 TabHome(),
                 TabInvestimento(),
                 TabUsuario(),
+
 
 
 

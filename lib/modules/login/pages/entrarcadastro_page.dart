@@ -35,9 +35,12 @@ class _EntrarCadastroPageState extends State<EntrarCadastroPage> {
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage( 'assets/imagens/fundo.jpg'),
-              fit: BoxFit.cover),
+            gradient: LinearGradient(
+              colors: [const Color.fromRGBO(72, 117, 223, 1.0), Color(0xffffffff)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )
+
         ),
         child:  ListView(
           children: <Widget>[
@@ -59,6 +62,23 @@ class _EntrarCadastroPageState extends State<EntrarCadastroPage> {
               ),
             ),
 
+
+            SizedBox(height: 50),
+            Container(
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'S I M U L A D O R   F I N A N C E I R O ',
+                          style: TextStyle(
+                             fontFamily: 'BebasNeue',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 30))
+                    ],
+                  ),
+                )),
             SizedBox(height: 200),
 
             Container(
@@ -70,10 +90,10 @@ class _EntrarCadastroPageState extends State<EntrarCadastroPage> {
 
                 child: Text(
                     'CRIAR UMA CONTA',
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                    style: TextStyle(color: Colors.blue, fontSize: 20,fontFamily: 'BebasNeue',)),
                 style: TextButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  side: BorderSide(width:0.1, color:Colors.white),
+                  backgroundColor: Colors.white,
+                  side: BorderSide(width:0.4, color:Colors.blue),
                   shape: const BeveledRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                 ),
@@ -99,7 +119,7 @@ class _EntrarCadastroPageState extends State<EntrarCadastroPage> {
 
                   child: Text(
                       'FAZER O LOGIN',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                      style: TextStyle(color: Colors.white, fontSize: 20,fontFamily: 'BebasNeue',)),
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     side: BorderSide(width:0.1, color:Colors.white),

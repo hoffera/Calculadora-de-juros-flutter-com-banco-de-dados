@@ -24,7 +24,7 @@ class SplashPage extends StatelessWidget {
       } else {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  EntrarCadastroPage(),),
+          MaterialPageRoute(builder: (context) =>  HomePage( ),),
         );
       }
     });
